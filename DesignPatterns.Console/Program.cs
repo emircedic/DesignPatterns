@@ -2,6 +2,8 @@
 using DesignPatterns.Builder;
 using DesignPatterns.FactoryMethod;
 using DesignPatterns.Prototype;
+using DesignPatterns.Singleton.SingletonNonThreadSafe;
+using DesignPatterns.Singleton.ThreadSafe;
 
 #region Factory Method
 
@@ -86,5 +88,43 @@ using DesignPatterns.Prototype;
 //{
 //    Console.WriteLine(String.Format("Name: {0}, Age: {1}, BirthDate: {2}\n ID: {3}", p.Name, p.Age, p.BirthDate, p.IdInfo.IdNumber));
 //}
+
+#endregion
+
+#region Singleton
+
+// Non Thread Safe
+SingletonNonThreadSafe s1 = SingletonNonThreadSafe.GetInstance();
+SingletonNonThreadSafe s2 = SingletonNonThreadSafe.GetInstance();
+
+if (s1 == s2)
+    Console.WriteLine("They are the same!");
+else
+    Console.WriteLine("They are not the same!");
+
+// Thread Safe
+
+Thread process1 = new Thread(() =>
+{
+    TestSingleton("FOO");
+});
+
+Thread process2 = new Thread(() =>
+{
+    TestSingleton("BAR");
+});
+
+process1.Start();
+process2.Start();
+
+process1.Join();
+process2.Join();
+
+
+static void TestSingleton(string value)
+{
+    SingletonThreadSafe singleton = SingletonThreadSafe.GetInstance(value);
+    Console.WriteLine(singleton.Value);
+}
 
 #endregion
