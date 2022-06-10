@@ -4,7 +4,7 @@
     {
         private SingletonNonThreadSafe() { }
 
-        public static SingletonNonThreadSafe _instance { get; set; }
+        private static SingletonNonThreadSafe _instance { get; set; }
 
         public static SingletonNonThreadSafe GetInstance()
         {

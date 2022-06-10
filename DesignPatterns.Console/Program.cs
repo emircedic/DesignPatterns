@@ -4,6 +4,7 @@ using DesignPatterns.FactoryMethod;
 using DesignPatterns.Prototype;
 using DesignPatterns.Singleton.SingletonNonThreadSafe;
 using DesignPatterns.Singleton.ThreadSafe;
+using DesignPatterns.Structural.Adapter;
 
 #region Factory Method
 
@@ -93,38 +94,50 @@ using DesignPatterns.Singleton.ThreadSafe;
 
 #region Singleton
 
-// Non Thread Safe
-SingletonNonThreadSafe s1 = SingletonNonThreadSafe.GetInstance();
-SingletonNonThreadSafe s2 = SingletonNonThreadSafe.GetInstance();
+//// Non Thread Safe
+//SingletonNonThreadSafe s1 = SingletonNonThreadSafe.GetInstance();
+//SingletonNonThreadSafe s2 = SingletonNonThreadSafe.GetInstance();
 
-if (s1 == s2)
-    Console.WriteLine("They are the same!");
-else
-    Console.WriteLine("They are not the same!");
+//if (s1 == s2)
+//    Console.WriteLine("They are the same!");
+//else
+//    Console.WriteLine("They are not the same!");
 
-// Thread Safe
+//// Thread Safe
 
-Thread process1 = new Thread(() =>
-{
-    TestSingleton("FOO");
-});
+//Thread process1 = new Thread(() =>
+//{
+//    TestSingleton("FOO");
+//});
 
-Thread process2 = new Thread(() =>
-{
-    TestSingleton("BAR");
-});
+//Thread process2 = new Thread(() =>
+//{
+//    TestSingleton("BAR");
+//});
 
-process1.Start();
-process2.Start();
+//process1.Start();
+//process2.Start();
 
-process1.Join();
-process2.Join();
+//process1.Join();
+//process2.Join();
 
 
-static void TestSingleton(string value)
-{
-    SingletonThreadSafe singleton = SingletonThreadSafe.GetInstance(value);
-    Console.WriteLine(singleton.Value);
-}
+//static void TestSingleton(string value)
+//{
+//    SingletonThreadSafe singleton = SingletonThreadSafe.GetInstance(value);
+//    Console.WriteLine(singleton.Value);
+//}
+
+#endregion
+
+#region Adaptee
+
+Adaptee adaptee = new Adaptee();
+ITarget target = new Adapter(adaptee);
+
+Console.WriteLine("Adaptee interface is incompatible with the client.");
+Console.WriteLine("But with the adapter client can call its method.");
+
+Console.WriteLine(target.GetRequest());
 
 #endregion
