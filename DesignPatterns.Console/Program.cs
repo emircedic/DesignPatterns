@@ -5,6 +5,7 @@ using DesignPatterns.Prototype;
 using DesignPatterns.Singleton.SingletonNonThreadSafe;
 using DesignPatterns.Singleton.ThreadSafe;
 using DesignPatterns.Structural.Adapter;
+using DesignPatterns.Structural.Bridge;
 
 #region Factory Method
 
@@ -132,12 +133,25 @@ using DesignPatterns.Structural.Adapter;
 
 #region Adaptee
 
-Adaptee adaptee = new Adaptee();
-ITarget target = new Adapter(adaptee);
+//Adaptee adaptee = new Adaptee();
+//ITarget target = new Adapter(adaptee);
 
-Console.WriteLine("Adaptee interface is incompatible with the client.");
-Console.WriteLine("But with the adapter client can call its method.");
+//Console.WriteLine("Adaptee interface is incompatible with the client.");
+//Console.WriteLine("But with the adapter client can call its method.");
 
-Console.WriteLine(target.GetRequest());
+//Console.WriteLine(target.GetRequest());
+
+#endregion
+
+#region Bridge
+
+Client client = new Client();
+Abstraction abstraction = new Abstraction(new ConcreteImplementationA());
+client.ClientCode(abstraction);
+
+Console.WriteLine();
+
+abstraction = new ExtendedAbstraction(new ConcreteImplementationB());
+client.ClientCode(abstraction);
 
 #endregion
