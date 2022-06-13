@@ -7,6 +7,8 @@ using DesignPatterns.Singleton.ThreadSafe;
 using DesignPatterns.Structural.Adapter;
 using DesignPatterns.Structural.Bridge;
 using DesignPatterns.Structural.Composite;
+using DesignPatterns.Structural.Decorator;
+using static DesignPatterns.Structural.Decorator.Decorator;
 
 #region Factory Method
 
@@ -159,25 +161,42 @@ using DesignPatterns.Structural.Composite;
 
 #region Composite 
 
-CompositeClient client = new CompositeClient();
+//CompositeClient client = new CompositeClient();
 
-Leaf leaf = new Leaf();
-Console.WriteLine("Client: I get a simple component:");
-client.ClientCode(leaf);
+//Leaf leaf = new Leaf();
+//Console.WriteLine("Client: I get a simple component:");
+//client.ClientCode(leaf);
 
-Composite tree = new Composite();
-Composite branch1 = new Composite();
-branch1.Add(new Leaf());
-branch1.Add(new Leaf());
-Composite branch2 = new Composite();
-branch2.Add(new Leaf());
-tree.Add(branch1);
-tree.Add(branch2);
+//Composite tree = new Composite();
+//Composite branch1 = new Composite();
+//branch1.Add(new Leaf());
+//branch1.Add(new Leaf());
+//Composite branch2 = new Composite();
+//branch2.Add(new Leaf());
+//tree.Add(branch1);
+//tree.Add(branch2);
 
-Console.WriteLine("Client: Now Ive got a composite tree:");
-client.ClientCode(tree);
+//Console.WriteLine("Client: Now Ive got a composite tree:");
+//client.ClientCode(tree);
 
-Console.WriteLine("Client: I dont need ot check the components classes even when managing the tree:\n");
-client.ClientCode2(tree, leaf);
+//Console.WriteLine("Client: I dont need ot check the components classes even when managing the tree:\n");
+//client.ClientCode2(tree, leaf);
+
+#endregion
+
+#region Decorator
+
+DecoratorClient client = new DecoratorClient();
+
+var simple = new ConcreteComponent();
+Console.WriteLine("Client: I get a simple component");
+client.ClientCode(simple);
+Console.WriteLine();
+
+ConcreteDecoratorA decorator1 = new ConcreteDecoratorA(simple);
+ConcreteDecoratorB decorator2 = new ConcreteDecoratorB(decorator1);
+Console.WriteLine("Client: Now Ive got a decorated compoennt: ");
+client.ClientCode(decorator2);
+
 
 #endregion
