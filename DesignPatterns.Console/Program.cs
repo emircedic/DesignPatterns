@@ -8,7 +8,9 @@ using DesignPatterns.Structural.Adapter;
 using DesignPatterns.Structural.Bridge;
 using DesignPatterns.Structural.Composite;
 using DesignPatterns.Structural.Decorator;
+using DesignPatterns.Structural.Facade;
 using static DesignPatterns.Structural.Decorator.Decorator;
+using static DesignPatterns.Structural.Facade.Facade;
 
 #region Factory Method
 
@@ -186,17 +188,27 @@ using static DesignPatterns.Structural.Decorator.Decorator;
 
 #region Decorator
 
-DecoratorClient client = new DecoratorClient();
+//DecoratorClient client = new DecoratorClient();
 
-var simple = new ConcreteComponent();
-Console.WriteLine("Client: I get a simple component");
-client.ClientCode(simple);
-Console.WriteLine();
+//var simple = new ConcreteComponent();
+//Console.WriteLine("Client: I get a simple component");
+//client.ClientCode(simple);
+//Console.WriteLine();
 
-ConcreteDecoratorA decorator1 = new ConcreteDecoratorA(simple);
-ConcreteDecoratorB decorator2 = new ConcreteDecoratorB(decorator1);
-Console.WriteLine("Client: Now Ive got a decorated compoennt: ");
-client.ClientCode(decorator2);
+//ConcreteDecoratorA decorator1 = new ConcreteDecoratorA(simple);
+//ConcreteDecoratorB decorator2 = new ConcreteDecoratorB(decorator1);
+//Console.WriteLine("Client: Now Ive got a decorated compoennt: ");
+//client.ClientCode(decorator2);
 
+#endregion
+
+#region 
+
+Subsystem1 subsystem1 = new Subsystem1();
+Subsystem2 subsystem2 = new Subsystem2();
+
+Facade facade = new Facade(subsystem1, subsystem2);
+
+FacadeClient.ClientCode(facade);
 
 #endregion
