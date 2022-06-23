@@ -9,6 +9,7 @@ using DesignPatterns.Structural.Bridge;
 using DesignPatterns.Structural.Composite;
 using DesignPatterns.Structural.Decorator;
 using DesignPatterns.Structural.Facade;
+using DesignPatterns.Structural.Flyweight;
 using static DesignPatterns.Structural.Decorator.Decorator;
 using static DesignPatterns.Structural.Facade.Facade;
 
@@ -202,13 +203,46 @@ using static DesignPatterns.Structural.Facade.Facade;
 
 #endregion
 
-#region 
+#region Facade
 
-Subsystem1 subsystem1 = new Subsystem1();
-Subsystem2 subsystem2 = new Subsystem2();
+//Subsystem1 subsystem1 = new Subsystem1();
+//Subsystem2 subsystem2 = new Subsystem2();
 
-Facade facade = new Facade(subsystem1, subsystem2);
+//Facade facade = new Facade(subsystem1, subsystem2);
 
-FacadeClient.ClientCode(facade);
+//FacadeClient.ClientCode(facade);
+
+#endregion
+
+#region Flyweight
+
+var factory = new FlywieghtFactory(new Car { Company = "Chevrolet", Model = "Camaro2018", Color = "pink" },
+                                   new Car { Company = "Mercedes Benz", Model = "C300", Color = "black" },
+                                   new Car { Company = "Mercedes Benz", Model = "C500", Color = "red" },
+                                   new Car { Company = "BMW", Model = "M5", Color = "red" },
+                                   new Car { Company = "BMW", Model = "X6", Color = "white" });
+
+factory.ListFlyweights();
+
+FlyweightExecute.AddCarToPoliceDatabase(factory, new Car
+{
+    Number = "CL234IR",
+    Owner = "James Doe",
+    Company = "BMW",
+    Model = "M5",
+    Color = "red"
+});
+
+FlyweightExecute.AddCarToPoliceDatabase(factory, new Car
+{
+    Number = "CL234IR",
+    Owner = "James Doe",
+    Company = "BMW",
+    Model = "X1",
+    Color = "red"
+});
+
+factory.ListFlyweights();
+
 
 #endregion
