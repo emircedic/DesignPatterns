@@ -10,6 +10,7 @@ using DesignPatterns.Structural.Composite;
 using DesignPatterns.Structural.Decorator;
 using DesignPatterns.Structural.Facade;
 using DesignPatterns.Structural.Flyweight;
+using DesignPatterns.Structural.Proxy;
 using static DesignPatterns.Structural.Decorator.Decorator;
 using static DesignPatterns.Structural.Facade.Facade;
 
@@ -216,33 +217,48 @@ using static DesignPatterns.Structural.Facade.Facade;
 
 #region Flyweight
 
-var factory = new FlywieghtFactory(new Car { Company = "Chevrolet", Model = "Camaro2018", Color = "pink" },
-                                   new Car { Company = "Mercedes Benz", Model = "C300", Color = "black" },
-                                   new Car { Company = "Mercedes Benz", Model = "C500", Color = "red" },
-                                   new Car { Company = "BMW", Model = "M5", Color = "red" },
-                                   new Car { Company = "BMW", Model = "X6", Color = "white" });
+//var factory = new FlywieghtFactory(new Car { Company = "Chevrolet", Model = "Camaro2018", Color = "pink" },
+//                                   new Car { Company = "Mercedes Benz", Model = "C300", Color = "black" },
+//                                   new Car { Company = "Mercedes Benz", Model = "C500", Color = "red" },
+//                                   new Car { Company = "BMW", Model = "M5", Color = "red" },
+//                                   new Car { Company = "BMW", Model = "X6", Color = "white" });
 
-factory.ListFlyweights();
+//factory.ListFlyweights();
 
-FlyweightExecute.AddCarToPoliceDatabase(factory, new Car
-{
-    Number = "CL234IR",
-    Owner = "James Doe",
-    Company = "BMW",
-    Model = "M5",
-    Color = "red"
-});
+//FlyweightExecute.AddCarToPoliceDatabase(factory, new Car
+//{
+//    Number = "CL234IR",
+//    Owner = "James Doe",
+//    Company = "BMW",
+//    Model = "M5",
+//    Color = "red"
+//});
 
-FlyweightExecute.AddCarToPoliceDatabase(factory, new Car
-{
-    Number = "CL234IR",
-    Owner = "James Doe",
-    Company = "BMW",
-    Model = "X1",
-    Color = "red"
-});
+//FlyweightExecute.AddCarToPoliceDatabase(factory, new Car
+//{
+//    Number = "CL234IR",
+//    Owner = "James Doe",
+//    Company = "BMW",
+//    Model = "X1",
+//    Color = "red"
+//});
 
-factory.ListFlyweights();
+//factory.ListFlyweights();
 
+#endregion
+
+#region Proxy
+
+ProxyClient proxyClient = new ProxyClient();
+
+Console.WriteLine("Client: Executing the client code with a real subject:");
+RealSubject realSubject = new RealSubject();
+proxyClient.ClientCode(realSubject);
+
+Console.WriteLine();
+
+Console.WriteLine("Client: Executing the same client code with a proxy:");
+Proxy proxy = new Proxy(realSubject);
+proxyClient.ClientCode(proxy);
 
 #endregion
