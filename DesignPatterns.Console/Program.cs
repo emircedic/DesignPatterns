@@ -1,4 +1,5 @@
 ﻿using DesignPatterns.AbstractFactory;
+using DesignPatterns.Behavioral.ChainOfResponsability;
 using DesignPatterns.Builder;
 using DesignPatterns.FactoryMethod;
 using DesignPatterns.Prototype;
@@ -249,16 +250,33 @@ using static DesignPatterns.Structural.Facade.Facade;
 
 #region Proxy
 
-ProxyClient proxyClient = new ProxyClient();
+//ProxyClient proxyClient = new ProxyClient();
 
-Console.WriteLine("Client: Executing the client code with a real subject:");
-RealSubject realSubject = new RealSubject();
-proxyClient.ClientCode(realSubject);
+//Console.WriteLine("Client: Executing the client code with a real subject:");
+//RealSubject realSubject = new RealSubject();
+//proxyClient.ClientCode(realSubject);
 
+//Console.WriteLine();
+
+//Console.WriteLine("Client: Executing the same client code with a proxy:");
+//Proxy proxy = new Proxy(realSubject);
+//proxyClient.ClientCode(proxy);
+
+#endregion
+
+#region Chain of responsability 
+
+var monkeyHandler = new MonkeyHandler();
+var squirrelHandler = new SquirrelHandler();
+var dogHandler = new DogHandler();
+
+monkeyHandler.SetNext(squirrelHandler).SetNext(dogHandler);
+
+Console.WriteLine("Chain: Monkey > Squirrel > Dog\n");
+CoRClient.ClientCode(monkeyHandler);
 Console.WriteLine();
 
-Console.WriteLine("Client: Executing the same client code with a proxy:");
-Proxy proxy = new Proxy(realSubject);
-proxyClient.ClientCode(proxy);
+Console.WriteLine("Subchain: Squirrel > Dog\n");
+CoRClient.ClientCode(squirrelHandler);
 
 #endregion
