@@ -1,5 +1,6 @@
 ﻿using DesignPatterns.AbstractFactory;
 using DesignPatterns.Behavioral.ChainOfResponsability;
+using DesignPatterns.Behavioral.Command;
 using DesignPatterns.Builder;
 using DesignPatterns.FactoryMethod;
 using DesignPatterns.Prototype;
@@ -266,17 +267,28 @@ using static DesignPatterns.Structural.Facade.Facade;
 
 #region Chain of responsability 
 
-var monkeyHandler = new MonkeyHandler();
-var squirrelHandler = new SquirrelHandler();
-var dogHandler = new DogHandler();
+//var monkeyHandler = new MonkeyHandler();
+//var squirrelHandler = new SquirrelHandler();
+//var dogHandler = new DogHandler();
 
-monkeyHandler.SetNext(squirrelHandler).SetNext(dogHandler);
+//monkeyHandler.SetNext(squirrelHandler).SetNext(dogHandler);
 
-Console.WriteLine("Chain: Monkey > Squirrel > Dog\n");
-CoRClient.ClientCode(monkeyHandler);
-Console.WriteLine();
+//Console.WriteLine("Chain: Monkey > Squirrel > Dog\n");
+//CoRClient.ClientCode(monkeyHandler);
+//Console.WriteLine();
 
-Console.WriteLine("Subchain: Squirrel > Dog\n");
-CoRClient.ClientCode(squirrelHandler);
+//Console.WriteLine("Subchain: Squirrel > Dog\n");
+//CoRClient.ClientCode(squirrelHandler);
+
+#endregion
+
+#region Command
+
+Invoker invoker = new Invoker();
+invoker.SetOnStart(new SimpleCommand("Say hi!"));
+Receiver receiver = new Receiver();
+invoker.SetOnFinish(new ComplexCommand(receiver, "Send email", "Save report"));
+
+invoker.DoSomethingImportant();
 
 #endregion
