@@ -1,6 +1,7 @@
 ﻿using DesignPatterns.AbstractFactory;
 using DesignPatterns.Behavioral.ChainOfResponsability;
 using DesignPatterns.Behavioral.Command;
+using DesignPatterns.Behavioral.Iterator;
 using DesignPatterns.Builder;
 using DesignPatterns.FactoryMethod;
 using DesignPatterns.Prototype;
@@ -284,11 +285,32 @@ using static DesignPatterns.Structural.Facade.Facade;
 
 #region Command
 
-Invoker invoker = new Invoker();
-invoker.SetOnStart(new SimpleCommand("Say hi!"));
-Receiver receiver = new Receiver();
-invoker.SetOnFinish(new ComplexCommand(receiver, "Send email", "Save report"));
+//Invoker invoker = new Invoker();
+//invoker.SetOnStart(new SimpleCommand("Say hi!"));
+//Receiver receiver = new Receiver();
+//invoker.SetOnFinish(new ComplexCommand(receiver, "Send email", "Save report"));
 
-invoker.DoSomethingImportant();
+//invoker.DoSomethingImportant();
 
 #endregion
+
+#region Iterator
+
+var collection = new WordsCollection();
+collection.AddItem("First");
+collection.AddItem("Second");
+collection.AddItem("Third");
+
+Console.WriteLine($"Straight traversal: ");
+
+foreach (var element in collection)
+    Console.WriteLine(element);
+
+Console.WriteLine($"\nReverse traversal:");
+collection.ReverseDirection();
+
+foreach (var element in collection)
+    Console.WriteLine(element);
+
+#endregion
+
