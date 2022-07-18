@@ -2,6 +2,7 @@
 using DesignPatterns.Behavioral.ChainOfResponsability;
 using DesignPatterns.Behavioral.Command;
 using DesignPatterns.Behavioral.Iterator;
+using DesignPatterns.Behavioral.Mediator;
 using DesignPatterns.Builder;
 using DesignPatterns.FactoryMethod;
 using DesignPatterns.Prototype;
@@ -296,21 +297,38 @@ using static DesignPatterns.Structural.Facade.Facade;
 
 #region Iterator
 
-var collection = new WordsCollection();
-collection.AddItem("First");
-collection.AddItem("Second");
-collection.AddItem("Third");
+//var collection = new WordsCollection();
+//collection.AddItem("First");
+//collection.AddItem("Second");
+//collection.AddItem("Third");
 
-Console.WriteLine($"Straight traversal: ");
+//Console.WriteLine($"Straight traversal: ");
 
-foreach (var element in collection)
-    Console.WriteLine(element);
+//foreach (var element in collection)
+//    Console.WriteLine(element);
 
-Console.WriteLine($"\nReverse traversal:");
-collection.ReverseDirection();
+//Console.WriteLine($"\nReverse traversal:");
+//collection.ReverseDirection();
 
-foreach (var element in collection)
-    Console.WriteLine(element);
+//foreach (var element in collection)
+//    Console.WriteLine(element);
+
+#endregion
+
+#region Mediator
+
+Component1 component1 = new Component1();
+Component2 component2 = new Component2();
+
+new ConcreteMediator(component1, component2);
+
+Console.WriteLine("Client triggers operation A");
+component1.DoA();
+
+Console.WriteLine();
+
+Console.WriteLine("Client triggers operation D");
+component2.DoD();
 
 #endregion
 
