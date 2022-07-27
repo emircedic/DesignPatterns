@@ -3,6 +3,7 @@ using DesignPatterns.Behavioral.ChainOfResponsability;
 using DesignPatterns.Behavioral.Command;
 using DesignPatterns.Behavioral.Iterator;
 using DesignPatterns.Behavioral.Mediator;
+using DesignPatterns.Behavioral.Memento;
 using DesignPatterns.Builder;
 using DesignPatterns.FactoryMethod;
 using DesignPatterns.Prototype;
@@ -317,18 +318,44 @@ using static DesignPatterns.Structural.Facade.Facade;
 
 #region Mediator
 
-Component1 component1 = new Component1();
-Component2 component2 = new Component2();
+//Component1 component1 = new Component1();
+//Component2 component2 = new Component2();
 
-new ConcreteMediator(component1, component2);
+//new ConcreteMediator(component1, component2);
 
-Console.WriteLine("Client triggers operation A");
-component1.DoA();
+//Console.WriteLine("Client triggers operation A");
+//component1.DoA();
 
-Console.WriteLine();
+//Console.WriteLine();
 
-Console.WriteLine("Client triggers operation D");
-component2.DoD();
+//Console.WriteLine("Client triggers operation D");
+//component2.DoD();
 
 #endregion
 
+#region Memento
+
+Originator originator = new Originator("Super-duper-super-puper-super");
+Caretaker caretaker = new Caretaker(originator);
+
+caretaker.Backup();
+originator.DoSomething();
+
+caretaker.Backup();
+originator.DoSomething();
+
+caretaker.Backup();
+originator.DoSomething();
+
+Console.WriteLine();
+caretaker.ShowHistory();
+
+Console.WriteLine("\nClient: Now, lets rollback!\n");
+caretaker.Undo();
+
+Console.WriteLine("\n\nClient: Once more!\n");
+caretaker.Undo();
+
+Console.WriteLine();
+
+#endregion
