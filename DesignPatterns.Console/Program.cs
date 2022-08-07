@@ -5,6 +5,7 @@ using DesignPatterns.Behavioral.Iterator;
 using DesignPatterns.Behavioral.Mediator;
 using DesignPatterns.Behavioral.Memento;
 using DesignPatterns.Behavioral.Observer;
+using DesignPatterns.Behavioral.State;
 using DesignPatterns.Builder;
 using DesignPatterns.FactoryMethod;
 using DesignPatterns.Prototype;
@@ -363,18 +364,26 @@ using static DesignPatterns.Structural.Facade.Facade;
 
 #region Observer
 
-var subject = new Subject();
-var observerA = new ConcreteObserverA();
-subject.Attach(observerA);
+//var subject = new Subject();
+//var observerA = new ConcreteObserverA();
+//subject.Attach(observerA);
 
-var observerB = new ConcreteObserverB();
-subject.Attach(observerB);
+//var observerB = new ConcreteObserverB();
+//subject.Attach(observerB);
 
-subject.SomeBusinessLogic();
-subject.SomeBusinessLogic();
+//subject.SomeBusinessLogic();
+//subject.SomeBusinessLogic();
 
-subject.Detach(observerB);
+//subject.Detach(observerB);
 
-subject.SomeBusinessLogic();
+//subject.SomeBusinessLogic();
+
+#endregion
+
+#region State
+
+var context = new StateContext(new ConcreteStateA());
+context.Request1();
+context.Request2();
 
 #endregion
