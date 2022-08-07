@@ -6,6 +6,7 @@ using DesignPatterns.Behavioral.Mediator;
 using DesignPatterns.Behavioral.Memento;
 using DesignPatterns.Behavioral.Observer;
 using DesignPatterns.Behavioral.State;
+using DesignPatterns.Behavioral.Strategy;
 using DesignPatterns.Builder;
 using DesignPatterns.FactoryMethod;
 using DesignPatterns.Prototype;
@@ -382,8 +383,24 @@ using static DesignPatterns.Structural.Facade.Facade;
 
 #region State
 
-var context = new StateContext(new ConcreteStateA());
-context.Request1();
-context.Request2();
+//var context = new StateContext(new ConcreteStateA());
+//context.Request1();
+//context.Request2();
+
+#endregion
+
+#region Strategy
+
+var context = new StrategyContext();
+
+Console.WriteLine("Client: Strategy is set to normal sorting.");
+context.SetStrategy(new ConcreteStrategyA());
+context.DoSomeBusinessLogic();
+
+Console.WriteLine();
+
+Console.WriteLine("Client: Strategy is set to reverse sorting.");
+context.SetStrategy(new ConcreteStrategyB());
+context.DoSomeBusinessLogic();
 
 #endregion
