@@ -4,6 +4,7 @@ using DesignPatterns.Behavioral.Command;
 using DesignPatterns.Behavioral.Iterator;
 using DesignPatterns.Behavioral.Mediator;
 using DesignPatterns.Behavioral.Memento;
+using DesignPatterns.Behavioral.Observer;
 using DesignPatterns.Builder;
 using DesignPatterns.FactoryMethod;
 using DesignPatterns.Prototype;
@@ -335,27 +336,45 @@ using static DesignPatterns.Structural.Facade.Facade;
 
 #region Memento
 
-Originator originator = new Originator("Super-duper-super-puper-super");
-Caretaker caretaker = new Caretaker(originator);
+//Originator originator = new Originator("Super-duper-super-puper-super");
+//Caretaker caretaker = new Caretaker(originator);
 
-caretaker.Backup();
-originator.DoSomething();
+//caretaker.Backup();
+//originator.DoSomething();
 
-caretaker.Backup();
-originator.DoSomething();
+//caretaker.Backup();
+//originator.DoSomething();
 
-caretaker.Backup();
-originator.DoSomething();
+//caretaker.Backup();
+//originator.DoSomething();
 
-Console.WriteLine();
-caretaker.ShowHistory();
+//Console.WriteLine();
+//caretaker.ShowHistory();
 
-Console.WriteLine("\nClient: Now, lets rollback!\n");
-caretaker.Undo();
+//Console.WriteLine("\nClient: Now, lets rollback!\n");
+//caretaker.Undo();
 
-Console.WriteLine("\n\nClient: Once more!\n");
-caretaker.Undo();
+//Console.WriteLine("\n\nClient: Once more!\n");
+//caretaker.Undo();
 
-Console.WriteLine();
+//Console.WriteLine();
+
+#endregion
+
+#region Observer
+
+var subject = new Subject();
+var observerA = new ConcreteObserverA();
+subject.Attach(observerA);
+
+var observerB = new ConcreteObserverB();
+subject.Attach(observerB);
+
+subject.SomeBusinessLogic();
+subject.SomeBusinessLogic();
+
+subject.Detach(observerB);
+
+subject.SomeBusinessLogic();
 
 #endregion
