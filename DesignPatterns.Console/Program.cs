@@ -7,6 +7,7 @@ using DesignPatterns.Behavioral.Memento;
 using DesignPatterns.Behavioral.Observer;
 using DesignPatterns.Behavioral.State;
 using DesignPatterns.Behavioral.Strategy;
+using DesignPatterns.Behavioral.TemplateMethod;
 using DesignPatterns.Builder;
 using DesignPatterns.FactoryMethod;
 using DesignPatterns.Prototype;
@@ -391,16 +392,28 @@ using static DesignPatterns.Structural.Facade.Facade;
 
 #region Strategy
 
-var context = new StrategyContext();
+//var context = new StrategyContext();
 
-Console.WriteLine("Client: Strategy is set to normal sorting.");
-context.SetStrategy(new ConcreteStrategyA());
-context.DoSomeBusinessLogic();
+//Console.WriteLine("Client: Strategy is set to normal sorting.");
+//context.SetStrategy(new ConcreteStrategyA());
+//context.DoSomeBusinessLogic();
 
-Console.WriteLine();
+//Console.WriteLine();
 
-Console.WriteLine("Client: Strategy is set to reverse sorting.");
-context.SetStrategy(new ConcreteStrategyB());
-context.DoSomeBusinessLogic();
+//Console.WriteLine("Client: Strategy is set to reverse sorting.");
+//context.SetStrategy(new ConcreteStrategyB());
+//context.DoSomeBusinessLogic();
+
+#endregion
+
+#region Template method
+
+Console.WriteLine("Same client code can work with different subclasses:");
+TemplateMethodClient.ClientClode(new ConcreteClass1());
+
+Console.WriteLine("\n");
+
+Console.WriteLine("Smae client code can work with different subclasses:");
+TemplateMethodClient.ClientClode(new ConcreteClass2());
 
 #endregion
