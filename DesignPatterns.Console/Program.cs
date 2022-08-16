@@ -8,6 +8,7 @@ using DesignPatterns.Behavioral.Observer;
 using DesignPatterns.Behavioral.State;
 using DesignPatterns.Behavioral.Strategy;
 using DesignPatterns.Behavioral.TemplateMethod;
+using DesignPatterns.Behavioral.Visitor;
 using DesignPatterns.Builder;
 using DesignPatterns.FactoryMethod;
 using DesignPatterns.Prototype;
@@ -408,12 +409,33 @@ using static DesignPatterns.Structural.Facade.Facade;
 
 #region Template method
 
-Console.WriteLine("Same client code can work with different subclasses:");
-TemplateMethodClient.ClientClode(new ConcreteClass1());
+//Console.WriteLine("Same client code can work with different subclasses:");
+//TemplateMethodClient.ClientClode(new ConcreteClass1());
 
-Console.WriteLine("\n");
+//Console.WriteLine("\n");
 
-Console.WriteLine("Smae client code can work with different subclasses:");
-TemplateMethodClient.ClientClode(new ConcreteClass2());
+//Console.WriteLine("Smae client code can work with different subclasses:");
+//TemplateMethodClient.ClientClode(new ConcreteClass2());
+
+#endregion
+
+#region Visitor
+
+List<IComponent> components = new List<IComponent>
+{
+    new ConcreteComponentA(),
+    new ConcreteComponentB()
+};
+
+Console.WriteLine("The client code works with all visitors via the base Visitor interface");
+
+var visitor1 = new ConcreteVisitor1();
+VisitorClient.ClientCode(components, visitor1);
+
+Console.WriteLine();
+
+Console.WriteLine("It allows the same client code to work with different types of visitors:");
+var visitor2 = new ConcreteVisitor2();
+VisitorClient.ClientCode(components, visitor2);
 
 #endregion
